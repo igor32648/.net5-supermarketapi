@@ -16,7 +16,8 @@ namespace SupermarketAPI.Models
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]
         public string Name { get; set; }
         public string Brand { get; set; }
-        public double Category { get; set; }
+        [StringLength(30, ErrorMessage = "must be less than 30 characters")]
+        public string Category { get; set; }
         [Required(ErrorMessage = "price is required")]
         public double Price { get; set; }
         public double Weight { get; set; }
