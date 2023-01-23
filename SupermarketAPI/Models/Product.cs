@@ -8,6 +8,9 @@ namespace SupermarketAPI.Models
 {
     public class Product
     {
+        
+        [Key]
+        [Required]
         public int Id { get; set; }
         [Required(ErrorMessage = "product name is required")]
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]

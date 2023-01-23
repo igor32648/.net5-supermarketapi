@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SupermarketAPI.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,9 @@ namespace SupermarketAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            var connectionString = Configuration.GetConnectionString("ProductConnection");
+
+            services.AddDbContext<ProductContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
