@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SupermarketAPI.Data;
 using SupermarketAPI.Data.Dtos;
 using SupermarketAPI.Models;
@@ -14,23 +15,18 @@ namespace SupermarketAPI.Controllers
     public class ProductController : ControllerBase
     {
         private ProductContext _context;
+        private IMapper _mapper;
 
-        public ProductController(ProductContext context)
+        public ProductController(ProductContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpPost]
         public IActionResult AddProduct([FromBody]CreateProductDto productDto)
         {
-            Product product = new Product
-            {
-                Name = productDto.Name,
-                Brand = productDto.Brand,
-                Category = productDto.Category,
-                Price = productDto.Price,
-                Weight = productDto.Weight
-            };
+            Product product = _mapper.Map<Product>(productDto);
             
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -51,15 +47,7 @@ namespace SupermarketAPI.Controllers
             Product product = _context.Products.FirstOrDefault(product => product.Id == id);
             if(product != null)
             {
-                ReadProductDto readProduct = new ReadProductDto
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Brand = product.Brand,
-                    Category = product.Category,
-                    Price = product.Price,
-                    Weight = product.Weight
-                };
+                ReadProductDto readProduct = _mapper.Map<ReadProductDto>(product);
 
                 return Ok(readProduct);
             }
@@ -75,11 +63,7 @@ namespace SupermarketAPI.Controllers
             {
                 return NotFound();
             }
-            product.Name = updatedProduct.Name;
-            product.Brand = updatedProduct.Brand;
-            product.Category = updatedProduct.Category;
-            product.Price = updatedProduct.Price;
-            product.Weight = updatedProduct.Weight;
+            _mapper.Map(updatedProduct, product);
             _context.SaveChanges();
             return NoContent();
         }
