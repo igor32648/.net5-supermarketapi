@@ -8,8 +8,8 @@ using SupermarketAPI.Data;
 namespace SupermarketAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230123183155_UpdatingTypes")]
-    partial class UpdatingTypes
+    [Migration("20230125175458_PerishableProperty")]
+    partial class PerishableProperty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,12 +28,16 @@ namespace SupermarketAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Category")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
+
+                    b.Property<bool>("Perishable")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");

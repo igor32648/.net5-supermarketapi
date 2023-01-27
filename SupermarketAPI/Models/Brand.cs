@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace SupermarketAPI.Models
 {
-    public class Product
+    public class Brand
     {
-        
         [Key]
         [Required]
         public int Id { get; set; }
-        [Required(ErrorMessage = "product name is required")]
+        [Required(ErrorMessage = "brand name is required")]
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "price is required")]
-        public double Price { get; set; }
-        public double Weight { get; set; }
         [Required]
-        public bool Perishable { get; set; }
+        public bool HighCost { get; set; }
+        [StringLength(30, ErrorMessage = "must be less than 30 characters")]
+        public string  Purveyor { get; set; }
+        [StringLength(30, ErrorMessage = "must be less than 30 characters")]
+        public string PurveyorPhone { get; set; }
     }
 }

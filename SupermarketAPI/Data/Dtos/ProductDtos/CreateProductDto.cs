@@ -4,14 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupermarketAPI.Models
+namespace SupermarketAPI.Data.Dtos
 {
-    public class Product
+    public class CreateProductDto
     {
-        
-        [Key]
-        [Required]
-        public int Id { get; set; }
         [Required(ErrorMessage = "product name is required")]
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]
         public string Name { get; set; }

@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace SupermarketAPI.Data.Dtos
 {
-    public class CreateProductDto
+    public class ReadCategoryDto
     {
-        [Required(ErrorMessage = "product name is required")]
+        [Key]
+        [Required]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "category name is required")]
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]
         public string Name { get; set; }
-        public string Brand { get; set; }
+        [Required(ErrorMessage = "Storage name is required")]
         [StringLength(30, ErrorMessage = "must be less than 30 characters")]
-        public string Category { get; set; }
-        [Required(ErrorMessage = "price is required")]
-        public double Price { get; set; }
-        public double Weight { get; set; }
+        public string StoragePlace { get; set; }
+        public DateTime SearchTime { get; set; }
+
     }
 }

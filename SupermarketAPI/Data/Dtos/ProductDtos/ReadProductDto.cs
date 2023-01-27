@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupermarketAPI.Models
+namespace SupermarketAPI.Data.Dtos
 {
-    public class Product
+    public class ReadProductDto
     {
-        
         [Key]
         [Required]
         public int Id { get; set; }
@@ -20,5 +19,6 @@ namespace SupermarketAPI.Models
         public double Weight { get; set; }
         [Required]
         public bool Perishable { get; set; }
+        public DateTime SearchTime { get; set; }
     }
 }

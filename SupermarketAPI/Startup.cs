@@ -29,9 +29,9 @@ namespace SupermarketAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var connectionString = Configuration.GetConnectionString("ProductConnection");
+            var connectionString = Configuration.GetConnectionString("SupermarketConnection");
 
-            services.AddDbContext<ProductContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            services.AddDbContext<AppDbContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

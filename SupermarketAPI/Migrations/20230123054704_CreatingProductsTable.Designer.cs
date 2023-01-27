@@ -7,7 +7,7 @@ using SupermarketAPI.Data;
 
 namespace SupermarketAPI.Migrations
 {
-    [DbContext(typeof(ProductContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20230123054704_CreatingProductsTable")]
     partial class CreatingProductsTable
     {

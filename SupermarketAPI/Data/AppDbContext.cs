@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace SupermarketAPI.Data
 {
-    public class ProductContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public ProductContext(DbContextOptions<ProductContext> opt): base (opt)
+        public AppDbContext(DbContextOptions<AppDbContext> opt): base (opt)
         {
 
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

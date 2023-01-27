@@ -14,10 +14,10 @@ namespace SupermarketAPI.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private ProductContext _context;
+        private AppDbContext _context;
         private IMapper _mapper;
 
-        public ProductController(ProductContext context, IMapper mapper)
+        public ProductController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
